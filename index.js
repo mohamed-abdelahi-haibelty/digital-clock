@@ -4,11 +4,19 @@ function callTime(){
     let hour =time.getHours();
     let minute = time.getMinutes();
     let seconds = time.getSeconds();
+    let timestamps = "AM"
     if(hour>12){
-        let hourInPm = hour-12;
-        text.innerHTML = `${hourInPm}:${minute}:${seconds} PM`;
+        hour = hour-12;
+        timestamps = "PM"
     }
-    else
-     text.innerHTML = `${hour}:${minute}:${seconds} AM`;
+     if(hour<10)
+      hour = "0" + hour;
+     if(minute<10)
+      minute = "0" + minute;
+     if(seconds<10)
+      seconds = "0" + seconds;
+     if(hour == 0)
+      hour = 12;
+     text.innerHTML = `${hour}:${minute}:${seconds} ${timestamps}`;
 }
 setInterval(callTime,1000);
